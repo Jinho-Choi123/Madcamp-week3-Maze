@@ -18,34 +18,62 @@ public class BasicMove : MonoBehaviour
     {
 
         
-        
-        //Vector3 horizontal = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
-
-
-        if(Input.GetKey(KeyCode.A))
+        if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
+        {
+            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+            animator.SetFloat("Vertical", 0);
+            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);   
+        }
+        else if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S)){
+            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+            animator.SetFloat("Vertical", 0);
+            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+        }
+        else if(Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
+        {
+            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+            animator.SetFloat("Vertical", 0);
+            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+        }
+        else if(Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
+        {
+            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+            animator.SetFloat("Vertical", 0);
+            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+        }
+        else if(Input.GetKey(KeyCode.A))
         {   
             animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
             animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
             transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
         }
-        if(Input.GetKey(KeyCode.D))
+        else if(Input.GetKey(KeyCode.D))
         {
             animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
             animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
-        if(Input.GetKey(KeyCode.W))
+        else if(Input.GetKey(KeyCode.W))
         {
             animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
             animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
             transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);    
         }
-        if(Input.GetKey(KeyCode.S))
+        else if(Input.GetKey(KeyCode.S))
         {
             animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
             animator.SetFloat("Vertical", Input.GetAxis("Vertical"));   
             transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
         }
-        //transform.position = transform.position + horizontal * Time.deltaTime * 2;
+        
+        if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) &&!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)){
+            animator.SetFloat("Horizontal", 0);
+            animator.SetFloat("Vertical", 0);
+        }
+
     }
 }
