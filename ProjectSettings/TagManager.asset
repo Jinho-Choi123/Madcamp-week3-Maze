@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Maze Cell
+    uniqueID: 3016829179
+    locked: 0
+  - name: Maze Wall
+    uniqueID: 902212545
+    locked: 0
