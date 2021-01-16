@@ -14,7 +14,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MazeGenerator : MonoBehaviour {
+public class MazeGenerator_2 : MonoBehaviour {
 
     #region Variables:
     // ------------------------------------------------------
@@ -95,7 +95,7 @@ public class MazeGenerator : MonoBehaviour {
         InitValues();
 
         // Set starting point, set spawn point to start.
-        Vector2 startPos = new Vector2(-(cellSize * (mazeColumns / 2)) + (cellSize / 2), -(cellSize * (mazeRows / 2)) + (cellSize / 2));
+        Vector2 startPos = new Vector2(-(cellSize * (mazeColumns / 2)) + (cellSize / 2) + 30, -(cellSize * (mazeRows / 2)) + (cellSize / 2) + 30);
         Vector2 spawnPos = startPos;
 
         for (int x = 1; x <= mazeColumns; x++)

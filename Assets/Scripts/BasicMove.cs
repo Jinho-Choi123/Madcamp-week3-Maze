@@ -9,7 +9,7 @@ public class BasicMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.position = new Vector2(30, 30 );
     }
     
     public float moveSpeed = 2.0f;

@@ -11,11 +11,15 @@ public class BasicMoveRed : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        void Start()
+    {   
+        transform.position = new Vector2(0, 0 );
+
+    }
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Vector3 horizontal = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
  

@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Player2
   layers:
   - Default
   - TransparentFX
@@ -46,4 +47,7 @@ TagManager:
     locked: 0
   - name: Maze Wall
     uniqueID: 902212545
+    locked: 0
+  - name: Player
+    uniqueID: 1494242873
     locked: 0
