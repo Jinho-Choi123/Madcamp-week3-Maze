@@ -306,7 +306,8 @@ public class MazeGenerator : MonoBehaviour {
         if (mazeColumns <= 3) mazeColumns = 4;
 
         // Determine size of cell using localScale.
-        cellSize = cellPrefab.transform.localScale.x;
+        //cellSize = cellPrefab.transform.localScale.x;
+        cellSize = 0.43F;
 
         // Create an empty parent object to hold the maze in the scene.
         mazeParent = new GameObject();

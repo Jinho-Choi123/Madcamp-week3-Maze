@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08dd9315187db7c48aed85c651a1497e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 20
-  mazeColumns: 20
+  mazeRows: 30
+  mazeColumns: 30
   cellPrefab: {fileID: 4218365258578076762, guid: 7fd1593c2b25d1c4cba84d6e299772bb,
     type: 3}
   disableCellSprite: 0
