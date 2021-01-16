@@ -173,6 +173,8 @@ public class MazeGenerator_1 : MonoBehaviour {
         else if (newCell.gridPos.y == mazeRows) RemoveWall(newCell.cScript, 3);
         else RemoveWall(newCell.cScript, 4);
 
+        newCell.cellObject.GetComponent<SpriteRenderer>().material.color = Color.red;
+
         Debug.Log("Maze generation finished.");
     }
 
