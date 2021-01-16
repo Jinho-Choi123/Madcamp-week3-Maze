@@ -11,15 +11,41 @@ public class BasicMove : MonoBehaviour
     {
         
     }
-
+    
+    public float moveSpeed = 2.0f;
     // Update is called once per frame
     void Update()
     {
-        animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-        animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
 
-        Vector3 horizontal = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
+        
+        
+        //Vector3 horizontal = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
 
-        transform.position = transform.position + horizontal * Time.deltaTime * 2;
+
+        if(Input.GetKey(KeyCode.A))
+        {   
+            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+            animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
+            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+        }
+        if(Input.GetKey(KeyCode.D))
+        {
+            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+            animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
+            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+        }
+        if(Input.GetKey(KeyCode.W))
+        {
+            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+            animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
+            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);    
+        }
+        if(Input.GetKey(KeyCode.S))
+        {
+            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+            animator.SetFloat("Vertical", Input.GetAxis("Vertical"));   
+            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+        }
+        //transform.position = transform.position + horizontal * Time.deltaTime * 2;
     }
 }
