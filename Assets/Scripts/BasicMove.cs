@@ -9,71 +9,75 @@ public class BasicMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+         transform.position = new Vector2(0.43F/2,0.43F/2);
     }
     
     public float moveSpeed = 2.0f;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
-        
         if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
         {
-            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-            animator.SetFloat("Vertical", 0);
+            SetAnimatorInDiagonal();
             transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
             transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);   
         }
         else if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S)){
-            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-            animator.SetFloat("Vertical", 0);
+            SetAnimatorInDiagonal();
             transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
             transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
         }
         else if(Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
         {
-            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-            animator.SetFloat("Vertical", 0);
+            SetAnimatorInDiagonal();
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
             transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
         }
         else if(Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
         {
-            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-            animator.SetFloat("Vertical", 0);
+            SetAnimatorInDiagonal();
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
             transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
         }
         else if(Input.GetKey(KeyCode.A))
         {   
-            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-            animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
+            SetAnimatorInStraight();
             transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
         }
         else if(Input.GetKey(KeyCode.D))
         {
-            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-            animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
+            SetAnimatorInStraight();
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
         }
         else if(Input.GetKey(KeyCode.W))
         {
-            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-            animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
+            SetAnimatorInStraight();
             transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);    
         }
         else if(Input.GetKey(KeyCode.S))
         {
-            animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-            animator.SetFloat("Vertical", Input.GetAxis("Vertical"));   
+            SetAnimatorInStraight();
             transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
         }
         
         if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) &&!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)){
-            animator.SetFloat("Horizontal", 0);
-            animator.SetFloat("Vertical", 0);
+            ResetAnimator();
         }
 
+    }
+
+      public void SetAnimatorInDiagonal(){
+        animator.SetFloat("HorizontalBlue", Input.GetAxisRaw("Horizontal"));
+        animator.SetFloat("VerticalBlue", 0);
+    }
+
+    public void SetAnimatorInStraight(){
+        animator.SetFloat("HorizontalBlue", Input.GetAxisRaw("Horizontal"));
+        animator.SetFloat("VerticalBlue", Input.GetAxisRaw("Vertical"));   
+    }
+
+    public void ResetAnimator(){
+        animator.SetFloat("HorizontalBlue", 0);
+        animator.SetFloat("VerticalBlue", 0);
     }
 }
