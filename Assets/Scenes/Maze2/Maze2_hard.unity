@@ -272,6 +272,8 @@ MonoBehaviour:
   animator: {fileID: 297574097}
   offset2p: 14
   moveSpeed: 1
+  mazeRows: 0
+  mazeColumns: 0
 --- !u!50 &297574099
 Rigidbody2D:
   serializedVersion: 4
@@ -438,7 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 454208690}
-  moveSpeed: 2
+  moveSpeed: 1
 --- !u!50 &454208692
 Rigidbody2D:
   serializedVersion: 4

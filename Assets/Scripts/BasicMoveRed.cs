@@ -6,95 +6,89 @@ public class BasicMoveRed : MonoBehaviour
 {
     public Animator animator;
     public int offset2p = 14;
-    public float moveSpeed = 2.0f;
     public int mazeRows;
     public int mazeColumns;
     int now_position = 0; // right 는 1 left 는 -1 멈춤은 0
     
     // Start is called before the first frame update
     void Start()
-    {   
-        transform.position = new Vector2(0,0);
+    {
+         transform.position = new Vector2(0,0);
     }
-
+    
+    public float moveSpeed = 1.0f;
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Vector3 horizontal = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
-        Move();
-    }
-    
-    public void Move(){
-        
-        
-
+        //왼쪽 위
         if(Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow))
         {
-            SetAnimatorInDiagonal();
-            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);   
+            SetAnimator(-1.0f , 0.0f);
+            SetVector2(Vector2.left , Vector2.up);
         }
-        else if(Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow))
-        {
-            SetAnimatorInDiagonal();
-            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+        //왼쪽 아래
+        else if(Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow)){
+            SetAnimator(-1.0f , 0.0f);
+            SetVector2(Vector2.left , Vector2.down);
         }
+        //오른쪽 위
         else if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
         {
-            SetAnimatorInDiagonal();
-            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+            SetAnimator( 1.0f , 0.0f);
+            SetVector2(Vector2.right , Vector2.up);
         }
+        //오른쪽 아래
         else if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow))
         {
-            SetAnimatorInDiagonal();
-            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+            SetAnimator( 1.0f , 0.0f);
+            SetVector2(Vector2.right , Vector2.down);
         }
+        //왼쪽
         else if(Input.GetKey(KeyCode.LeftArrow))
         {   
-            SetAnimatorInStraight();
-            transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+            SetAnimator(-1.0f , 0.0f);
+            SetVector2(Vector2.left , Vector2.zero);
         }
+        //오른쪽
         else if(Input.GetKey(KeyCode.RightArrow))
         {
-            
-            SetAnimatorInStraight();
-            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            SetAnimator( 1.0f , 0.0f);
+            SetVector2(Vector2.right , Vector2.zero);
         }
+        //위
         else if(Input.GetKey(KeyCode.UpArrow))
         {
-            
-            SetAnimatorInStraight();
-            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);    
+            SetAnimator( 0.0f , 1.0f);
+            SetVector2(Vector2.zero , Vector2.up);
         }
+        //아래
         else if(Input.GetKey(KeyCode.DownArrow))
         {
-            
-            SetAnimatorInStraight();
-            transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+            SetAnimator( 0.0f , -1.0f);
+            SetVector2(Vector2.zero , Vector2.down);
         }
-        
-        if(!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) &&!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow)){
-            ResetAnimator();
-        }
-       
-    }
-
-    public void SetAnimatorInDiagonal(){
-        animator.SetFloat("HorizontalRed", Input.GetAxisRaw("Horizontal"));
-        animator.SetFloat("VerticalRed", 0);
-    }
-
-    public void SetAnimatorInStraight(){
-        animator.SetFloat("HorizontalRed", Input.GetAxisRaw("Horizontal"));
-        animator.SetFloat("VerticalRed", Input.GetAxisRaw("Vertical"));   
-    }
-
-    public void ResetAnimator(){
-        animator.SetFloat("HorizontalRed", 0);
-        animator.SetFloat("VerticalRed", 0);
-    }
     
+        //input이 없을때.
+        if(!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) &&!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow)){
+            SetAnimator( 0.0f , 0.0f);
+        }
+    }
+
+    //animation 조정.
+    //보여주고 싶은 animation 방향대로 값을 1,0,-1로 입력해주면 됨.
+    //ex, 오른쪽으로 간다 -> set_x는 1, set_y 는 0
+    //ex, animator를 멈추고 싶다 -> set_x는 0 || set_y는 0
+    public void SetAnimator(float set_x , float set_y){
+        animator.SetFloat("HorizontalRed", set_x);
+        animator.SetFloat("VerticalRed", set_y);
+    }
+
+    //캐릭터의 위치를 옮기는 것.
+    //x는 좌또는 우로 움직이는 것.
+    //y는 상또는 하로 움직이는것.
+    //ex, 오른쪽으로 가면 -> vector_x에는 vector2.right를, vector_y에는 vector2.zero를.
+    public void SetVector2(Vector2 vector_x , Vector2 vector_y){
+        transform.Translate(vector_x * moveSpeed * Time.deltaTime);
+        transform.Translate(vector_y * moveSpeed * Time.deltaTime);
+    }
 }

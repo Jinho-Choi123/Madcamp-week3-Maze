@@ -67,6 +67,7 @@ public class MazeGenerator_2 : MonoBehaviour {
     private float cellSize;
 
     private GameObject mazeParent;
+
     #endregion
 
     /* This Start run is an example, you can delete this when 
