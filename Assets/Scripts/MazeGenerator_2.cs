@@ -168,15 +168,23 @@ public class MazeGenerator_2 : MonoBehaviour {
         Cell newCell = edgeCells[Random.Range(0, edgeCells.Count)];
 
         // Remove appropriate wall for chosen edge cell.
-        if (newCell.gridPos.x == 0) RemoveWall(newCell.cScript, 1);
-        else if (newCell.gridPos.x == mazeColumns) RemoveWall(newCell.cScript, 2);
-        else if (newCell.gridPos.y == mazeRows) RemoveWall(newCell.cScript, 3);
-        else RemoveWall(newCell.cScript, 4);
+        // if (newCell.gridPos.x == 0) RemoveWall(newCell.cScript, 1);
+        // else if (newCell.gridPos.x == mazeColumns) RemoveWall(newCell.cScript, 2);
+        // else if (newCell.gridPos.y == mazeRows) RemoveWall(newCell.cScript, 3);
+        // else RemoveWall(newCell.cScript, 4);
 
+        if (newCell.gridPos.x == 0) ColorWall(newCell.cScript, 1);
+        else if (newCell.gridPos.x == mazeColumns) ColorWall(newCell.cScript, 2);
+        else if (newCell.gridPos.y == mazeRows) ColorWall(newCell.cScript, 3);
+        else ColorWall(newCell.cScript, 4);
 
-        newCell.cellObject.GetComponent<SpriteRenderer>().material.color = Color.red;
+        //newCell.cellObject.GetComponent<SpriteRenderer>().material.color = Color.red;
+
 
         Debug.Log("Maze generation finished.");
+        // newCell.cellObject.GetComponent<SpriteRenderer>().material.color = Color.red;
+
+        // Debug.Log("Maze generation finished.");
     }
 
     public List<Cell> GetUnvisitedNeighbours(Cell curCell)
@@ -240,6 +248,12 @@ public class MazeGenerator_2 : MonoBehaviour {
         else if (wallID == 4) cScript.wallD.SetActive(false);
     }
 
+    public void ColorWall(CellScript cScript, int wallID) {
+        if(wallID == 1) cScript.wallL.GetComponent<SpriteRenderer>().color = Color.green;
+        else if (wallID == 2) cScript.wallR.GetComponent<SpriteRenderer>().color = Color.green;
+        else if (wallID == 3) cScript.wallU.GetComponent<SpriteRenderer>().color = Color.green;
+        else if (wallID == 4) cScript.wallD.GetComponent<SpriteRenderer>().color = Color.green;
+    }
     public void CreateCentre()
     {
         // Get the 4 centre cells using the rows and columns variables.

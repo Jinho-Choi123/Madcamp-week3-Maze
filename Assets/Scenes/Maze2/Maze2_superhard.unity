@@ -197,7 +197,7 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.5
+    x: 0
     y: 0
     width: 0.5
     height: 1
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 311990421}
-  moveSpeed: 2
+  moveSpeed: 1
 --- !u!50 &311990423
 Rigidbody2D:
   serializedVersion: 4
@@ -512,7 +512,7 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.5
     y: 0
     width: 0.5
     height: 1
@@ -591,6 +591,8 @@ MonoBehaviour:
   animator: {fileID: 1275224621}
   offset2p: 14
   moveSpeed: 1
+  mazeRows: 0
+  mazeColumns: 0
 --- !u!50 &1275224623
 Rigidbody2D:
   serializedVersion: 4

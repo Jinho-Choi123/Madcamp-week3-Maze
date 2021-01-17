@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BasicMove : MonoBehaviour
 {
 
+    public static string winner = "";
     public Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -12,7 +14,7 @@ public class BasicMove : MonoBehaviour
          transform.position = new Vector2(30,30);
     }
     
-    public float moveSpeed = 2.0f;
+    public float moveSpeed = 1.0F;
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -79,5 +81,13 @@ public class BasicMove : MonoBehaviour
     public void ResetAnimator(){
         animator.SetFloat("HorizontalBlue", 0);
         animator.SetFloat("VerticalBlue", 0);
+    }
+
+    void OnCollisionEnter2D(Collision2D c) { 
+        if(c.gameObject.GetComponent<SpriteRenderer>().color == Color.green) {
+            winner = "Blue Mong Win!!";
+            SceneManager.LoadScene("Success");
+        }
+
     }
 }

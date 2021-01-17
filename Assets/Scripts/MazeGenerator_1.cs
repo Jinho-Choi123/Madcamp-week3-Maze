@@ -13,6 +13,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MazeGenerator_1 : MonoBehaviour {
 
@@ -167,13 +168,19 @@ public class MazeGenerator_1 : MonoBehaviour {
         // Get edge cell randomly from list.
         Cell newCell = edgeCells[Random.Range(0, edgeCells.Count)];
 
-        // Remove appropriate wall for chosen edge cell.
-        if (newCell.gridPos.x == 0) RemoveWall(newCell.cScript, 1);
-        else if (newCell.gridPos.x == mazeColumns) RemoveWall(newCell.cScript, 2);
-        else if (newCell.gridPos.y == mazeRows) RemoveWall(newCell.cScript, 3);
-        else RemoveWall(newCell.cScript, 4);
+        // // Remove appropriate wall for chosen edge cell.
+        // if (newCell.gridPos.x == 0) RemoveWall(newCell.cScript, 1);
+        // else if (newCell.gridPos.x == mazeColumns) RemoveWall(newCell.cScript, 2);
+        // else if (newCell.gridPos.y == mazeRows) RemoveWall(newCell.cScript, 3);
+        // else RemoveWall(newCell.cScript, 4);
 
-        newCell.cellObject.GetComponent<SpriteRenderer>().material.color = Color.red;
+        if (newCell.gridPos.x == 0) ColorWall(newCell.cScript, 1);
+        else if (newCell.gridPos.x == mazeColumns) ColorWall(newCell.cScript, 2);
+        else if (newCell.gridPos.y == mazeRows) ColorWall(newCell.cScript, 3);
+        else ColorWall(newCell.cScript, 4);
+
+        //newCell.cellObject.GetComponent<SpriteRenderer>().material.color = Color.red;
+
 
         Debug.Log("Maze generation finished.");
     }
@@ -237,6 +244,13 @@ public class MazeGenerator_1 : MonoBehaviour {
         else if (wallID == 2) cScript.wallR.SetActive(false);
         else if (wallID == 3) cScript.wallU.SetActive(false);
         else if (wallID == 4) cScript.wallD.SetActive(false);
+    }
+
+    public void ColorWall(CellScript cScript, int wallID) {
+        if(wallID == 1) cScript.wallL.GetComponent<SpriteRenderer>().color = Color.green;
+        else if (wallID == 2) cScript.wallR.GetComponent<SpriteRenderer>().color = Color.green;
+        else if (wallID == 3) cScript.wallU.GetComponent<SpriteRenderer>().color = Color.green;
+        else if (wallID == 4) cScript.wallD.GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     public void CreateCentre()

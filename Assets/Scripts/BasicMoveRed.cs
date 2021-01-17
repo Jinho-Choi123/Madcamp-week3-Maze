@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BasicMoveRed : MonoBehaviour
 {
+    public static string winner = "";
     public Animator animator;
     public int offset2p = 14;
     public float moveSpeed = 2.0f;
@@ -95,6 +97,14 @@ public class BasicMoveRed : MonoBehaviour
     public void ResetAnimator(){
         animator.SetFloat("HorizontalRed", 0);
         animator.SetFloat("VerticalRed", 0);
+    }
+
+    void OnCollisionEnter2D(Collision2D c) { 
+        if(c.gameObject.GetComponent<SpriteRenderer>().color == Color.green) {
+            winner = "Red Mong Win!!";
+            SceneManager.LoadScene("Success");
+        }
+
     }
     
 }

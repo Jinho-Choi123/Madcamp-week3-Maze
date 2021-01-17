@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Maze2/Maze2_superhard.unity
     guid: e994bee5ef723504c83fd83da9521fe6
+  - enabled: 1
+    path: Assets/Scenes/Success.unity
+    guid: f4493f0981e1015408f39eb41446ed1d
   m_configObjects: {}
