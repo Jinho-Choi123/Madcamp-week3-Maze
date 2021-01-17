@@ -21,57 +21,58 @@ public class BasicMoveRed : MonoBehaviour
     void FixedUpdate()
     {
         //왼쪽 위
-        if(Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow))
+        if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
         {
             SetAnimator(-1.0f , 0.0f);
             SetVector2(Vector2.left , Vector2.up);
         }
         //왼쪽 아래
-        else if(Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow)){
+        else if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S)){
             SetAnimator(-1.0f , 0.0f);
             SetVector2(Vector2.left , Vector2.down);
         }
         //오른쪽 위
-        else if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
+        else if(Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
         {
             SetAnimator( 1.0f , 0.0f);
             SetVector2(Vector2.right , Vector2.up);
         }
         //오른쪽 아래
-        else if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow))
+        else if(Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
         {
             SetAnimator( 1.0f , 0.0f);
             SetVector2(Vector2.right , Vector2.down);
         }
         //왼쪽
-        else if(Input.GetKey(KeyCode.LeftArrow))
+        else if(Input.GetKey(KeyCode.A))
         {   
             SetAnimator(-1.0f , 0.0f);
             SetVector2(Vector2.left , Vector2.zero);
         }
         //오른쪽
-        else if(Input.GetKey(KeyCode.RightArrow))
+        else if(Input.GetKey(KeyCode.D))
         {
             SetAnimator( 1.0f , 0.0f);
             SetVector2(Vector2.right , Vector2.zero);
         }
         //위
-        else if(Input.GetKey(KeyCode.UpArrow))
+        else if(Input.GetKey(KeyCode.W))
         {
             SetAnimator( 0.0f , 1.0f);
             SetVector2(Vector2.zero , Vector2.up);
         }
         //아래
-        else if(Input.GetKey(KeyCode.DownArrow))
+        else if(Input.GetKey(KeyCode.S))
         {
             SetAnimator( 0.0f , -1.0f);
             SetVector2(Vector2.zero , Vector2.down);
         }
-    
+        
         //input이 없을때.
-        if(!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) &&!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow)){
+        if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) &&!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)){
             SetAnimator( 0.0f , 0.0f);
         }
+        
     }
 
     //animation 조정.

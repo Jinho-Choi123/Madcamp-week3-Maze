@@ -323,6 +323,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1863725594}
   offset2p: 14
+  mazeRows: 0
+  mazeColumns: 0
   moveSpeed: 1
 --- !u!50 &1863725596
 Rigidbody2D:

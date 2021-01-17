@@ -35,6 +35,8 @@ public class MazeGenerator_1 : MonoBehaviour {
     [SerializeField]
     private GameObject cellPrefab;
 
+    private GameObject itemPrefab;
+
     [Tooltip("If you want to disable the main sprite so the cell has no background, set to TRUE. This will create a maze with only walls.")]
     public bool disableCellSprite ;
 
