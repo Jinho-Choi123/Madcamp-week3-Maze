@@ -320,6 +320,8 @@ MonoBehaviour:
     type: 3}
   itemPrefab4: {fileID: 7527486370187340200, guid: c2d6f68046258ce489fbf1fe87b2dc01,
     type: 3}
+  itemPrefab5: {fileID: 1042331787496844228, guid: bc423e7bc9878044fbbe2aca85bc0d57,
+    type: 3}
   disableCellSprite: 0
 --- !u!4 &134206792
 Transform:
@@ -334,6 +336,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &162534906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 162534908}
+  - component: {fileID: 162534907}
+  m_Layer: 0
+  m_Name: MazeGenerator2fake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &162534907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162534906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 039f59d85ddec0640ba2e082a075655b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 30
+  mazeColumns: 30
+  cellPrefab: {fileID: 4218365258578076762, guid: ff59a2a6f8fd1da4ba97b4b9895caf30,
+    type: 3}
+  itemPrefab0: {fileID: 5412272184786293337, guid: f3d1d88ed60e23d4480578bc4e01299e,
+    type: 3}
+  itemPrefab1: {fileID: 4281541060699122210, guid: 09f8275d5b9a80f4c8b6be2fedf233b5,
+    type: 3}
+  itemPrefab2: {fileID: 2230148241748668863, guid: 9e2909a0ee1380a46b5e67381b3ff173,
+    type: 3}
+  itemPrefab3: {fileID: 1528181788554953271, guid: 1a5939e50430d874ebc37f008030c3f1,
+    type: 3}
+  itemPrefab4: {fileID: 7527486370187340200, guid: c2d6f68046258ce489fbf1fe87b2dc01,
+    type: 3}
+  disableCellSprite: 0
+--- !u!4 &162534908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162534906}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.66, y: 9.74, z: -206.72168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &178158895
 GameObject:
@@ -935,6 +995,8 @@ MonoBehaviour:
   itemPrefab3: {fileID: 1528181788554953271, guid: 1a5939e50430d874ebc37f008030c3f1,
     type: 3}
   itemPrefab4: {fileID: 7527486370187340200, guid: c2d6f68046258ce489fbf1fe87b2dc01,
+    type: 3}
+  itemPrefab5: {fileID: 1042331787496844228, guid: bc423e7bc9878044fbbe2aca85bc0d57,
     type: 3}
   disableCellSprite: 0
 --- !u!4 &622113479
@@ -1871,3 +1933,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582715815}
   m_CullTransparentMesh: 0
+--- !u!1 &1689709455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1689709457}
+  - component: {fileID: 1689709458}
+  m_Layer: 0
+  m_Name: MazeGenerator1fake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1689709457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689709455}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.66, y: 9.74, z: -206.72168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1689709458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689709455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5887b39bd05bdd544b4cc8d0b7136998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 30
+  mazeColumns: 30
+  cellPrefab: {fileID: 4218365258578076762, guid: ff59a2a6f8fd1da4ba97b4b9895caf30,
+    type: 3}
+  itemPrefab0: {fileID: 5412272184786293337, guid: f3d1d88ed60e23d4480578bc4e01299e,
+    type: 3}
+  itemPrefab1: {fileID: 4281541060699122210, guid: 09f8275d5b9a80f4c8b6be2fedf233b5,
+    type: 3}
+  itemPrefab2: {fileID: 2230148241748668863, guid: 9e2909a0ee1380a46b5e67381b3ff173,
+    type: 3}
+  itemPrefab3: {fileID: 1528181788554953271, guid: 1a5939e50430d874ebc37f008030c3f1,
+    type: 3}
+  itemPrefab4: {fileID: 7527486370187340200, guid: c2d6f68046258ce489fbf1fe87b2dc01,
+    type: 3}
+  disableCellSprite: 0

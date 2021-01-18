@@ -17,6 +17,7 @@ public class BasicMove : MonoBehaviour
     public int isSlow = 0;
     public int isFast = 0;
     public bool isDead = false;
+    private GameObject map;
     [SerializeField]
     private GameObject basicMoveRed;
 
@@ -221,6 +222,11 @@ public class BasicMove : MonoBehaviour
             Debug.Log("Red moved to set.");
         }
 
+         if(collision.gameObject.CompareTag("item_maze")){
+             
+            Destroy(collision.gameObject);
+            StartCoroutine(MazeDelayOther());
+        }
     }
 
     IEnumerator ReverseDelayOther()
@@ -261,6 +267,13 @@ public class BasicMove : MonoBehaviour
         basicMoveRed.GetComponent<BasicMoveRed>().OffDeadAnimation();
         basicMoveRed.GetComponent<BasicMoveRed>().transform.position = new Vector2(0, 0);
         basicMoveRed.GetComponent<BasicMoveRed>().isDead = false;
+    }
+    IEnumerator MazeDelayOther()
+    {
+        
+        MazeGeneratorRedFake.red_fake_map.SetActive(true);
+        yield return new WaitForSeconds(5.0f);
+        MazeGeneratorRedFake.red_fake_map.SetActive(false);
     }
 
 }

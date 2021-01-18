@@ -16,6 +16,8 @@ MonoImporter:
       type: 3}
   - itemPrefab4: {fileID: 7527486370187340200, guid: c2d6f68046258ce489fbf1fe87b2dc01,
       type: 3}
+  - itemPrefab5: {fileID: 1042331787496844228, guid: bc423e7bc9878044fbbe2aca85bc0d57,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

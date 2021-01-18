@@ -40,6 +40,7 @@ public class MazeGenerator_2 : MonoBehaviour {
     public GameObject itemPrefab2;
     public GameObject itemPrefab3;
     public GameObject itemPrefab4;
+    public GameObject itemPrefab5;
 
     private GameObject[] Items;
 
@@ -88,7 +89,7 @@ public class MazeGenerator_2 : MonoBehaviour {
      */
     private void Start()
     {
-        Items = new GameObject[] { itemPrefab0,itemPrefab1,itemPrefab2,itemPrefab3,itemPrefab4};
+        Items = new GameObject[] { itemPrefab0,itemPrefab1,itemPrefab2,itemPrefab3,itemPrefab4,itemPrefab5};
           //1번째 reset
         reset_item_x[0] = Random.Range(2,mazeColumns);
         reset_item_y[0] = Random.Range(1,mazeRows/2);
@@ -263,10 +264,12 @@ public class MazeGenerator_2 : MonoBehaviour {
     // and an 'ID', where the ID = the wall. 1 = left, 2 = right, 3 = up, 4 = down.
     public void RemoveWall(CellScript cScript, int wallID)
     {
+        
         if (wallID == 1) cScript.wallL.SetActive(false);
         else if (wallID == 2) cScript.wallR.SetActive(false);
         else if (wallID == 3) cScript.wallU.SetActive(false);
         else if (wallID == 4) cScript.wallD.SetActive(false);
+        
     }
 
     public void ColorWall(CellScript cScript, int wallID) {
@@ -332,7 +335,7 @@ public class MazeGenerator_2 : MonoBehaviour {
             //reset item 외 다른 아이템 생성.
             else if(Random.Range(0,35) == 1){
 
-                int random_int = Random.Range(0,4);
+                int random_int = Random.Range(0,5);
                 
                 if(random_int >= 2)
                     random_int++;
@@ -381,7 +384,7 @@ public class MazeGenerator_2 : MonoBehaviour {
         // Create an empty parent object to hold the maze in the scene.
         mazeParent = new GameObject();
         mazeParent.transform.position = Vector2.zero;
-        mazeParent.name = "Maze2";
+        mazeParent.name = "MazeBlue";
     }
 
     public bool IsOdd(int value)
