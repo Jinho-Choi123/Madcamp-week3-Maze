@@ -518,12 +518,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 297574097}
-  moveSpeed: 1
-  maxSpeed: 2
+  moveSpeed: 1.2
   minSpeed: 0.5
-  tmpMoveSpeed: 0
+  tmpMoveSpeed: 1
   isReverse: 0
   isStopped: 0
+  isSlow: 0
+  isFast: 0
   basicMove: {fileID: 454208689}
 --- !u!50 &297574099
 Rigidbody2D:
@@ -769,12 +770,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 454208690}
-  moveSpeed: 1
-  maxSpeed: 2
+  moveSpeed: 1.2
   minSpeed: 0.5
-  tmpMoveSpeed: 0
+  tmpMoveSpeed: 1
   isReverse: 0
   isStopped: 0
+  isSlow: 0
+  isFast: 0
   basicMoveRed: {fileID: 297574096}
 --- !u!50 &454208692
 Rigidbody2D:

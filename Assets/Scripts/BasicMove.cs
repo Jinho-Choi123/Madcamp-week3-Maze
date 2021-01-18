@@ -8,12 +8,14 @@ public class BasicMove : MonoBehaviour
 
     public static string winner = "";
     public Animator animator;
-    public float moveSpeed = 1.0f;
-    public float maxSpeed = 2.0f;
+    public float moveSpeed = 1.2f;
+    private float maxSpeed = 2.0f;
     public float minSpeed = 0.5f;
     public float tmpMoveSpeed = 1.0f;
     public int isReverse = 0;
     public int isStopped = 0;
+    public int isSlow = 0;
+    public int isFast = 0;
     [SerializeField]
     private GameObject basicMoveRed;
 
@@ -36,24 +38,24 @@ public class BasicMove : MonoBehaviour
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
         {  
             SetAnimator(-1.0f, 0.0f);
-            SetVector2(Vector2.left, Vector2.up);
+            SetVector2(Vector2.left * new Vector2(0.707f,0), Vector2.up * new Vector2(0,0.707f));
         }
         //왼쪽 아래
         else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S)) {
             SetAnimator(-1.0f, 0.0f);
-            SetVector2(Vector2.left, Vector2.down);
+            SetVector2(Vector2.left * new Vector2(0.707f,0), Vector2.down* new Vector2(0,0.707f));
         }
         //오른쪽 위
         else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
         {
             SetAnimator(1.0f, 0.0f);
-            SetVector2(Vector2.right, Vector2.up);
+            SetVector2(Vector2.right* new Vector2(0.707f,0), Vector2.up* new Vector2(0,0.707f));
         }
         //오른쪽 아래
         else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
         {
             SetAnimator(1.0f, 0.0f);
-            SetVector2(Vector2.right, Vector2.down);
+            SetVector2(Vector2.right* new Vector2(0.707f,0), Vector2.down* new Vector2(0,0.707f));
         }
         //왼쪽
         else if (Input.GetKey(KeyCode.A))
@@ -86,6 +88,16 @@ public class BasicMove : MonoBehaviour
             SetAnimator(0.0f, 0.0f);
         }
 
+        if (moveSpeed >= 1.0f && moveSpeed < maxSpeed)
+        {
+            tmpMoveSpeed = moveSpeed;
+        }
+
+        //Fast
+        if(isFast >= 1){
+            moveSpeed = maxSpeed;
+        }
+
         //Reverse
         if (isReverse >= 1)
         {
@@ -94,25 +106,27 @@ public class BasicMove : MonoBehaviour
                 moveSpeed = -1 * moveSpeed;
             }
         }
-        if (isReverse == 0){
-            if(moveSpeed < 0)
-            {
-                moveSpeed = -1 * moveSpeed;
-            }
-        }
-
-        //freeze 후 moveSpeed = tmpMoveSpeed 로 넘겨주기 위해
-        if (moveSpeed != 0)
-        {
-            tmpMoveSpeed = moveSpeed;
-        }
-            
+       
         //freeze
         if (isStopped >= 1)
         {
             moveSpeed = 0;
         }
-        if(isStopped == 0)
+       
+        //slow
+        if(isSlow >= 1){
+            if(isStopped >= 1){
+                moveSpeed =0;
+            }
+            else{
+                if(isReverse >= 1)
+                    moveSpeed = -1 * minSpeed;
+                else
+                    moveSpeed = minSpeed;
+            }    
+        }
+
+         if(isStopped == 0 && isReverse ==0 && isSlow == 0 && isFast == 0)
         {
             moveSpeed = tmpMoveSpeed;
         }
@@ -151,20 +165,28 @@ public class BasicMove : MonoBehaviour
         if (collision.gameObject.CompareTag("speed"))
         {
             Destroy(collision.gameObject);
+            isFast++;
+            /*
             if (1.1f * moveSpeed <= maxSpeed)
             {
                 moveSpeed += moveSpeed * 0.2f;
             }
+            */
+            StartCoroutine(FastDelay());
         }
 
         //min 0.5f 까지만 하도록 조절
         if (collision.gameObject.CompareTag("debufspeed"))
         {
             Destroy(collision.gameObject);
+            /*
             if (0.93f * basicMoveRed.GetComponent<BasicMoveRed>().moveSpeed >= minSpeed)
             {
                 basicMoveRed.GetComponent<BasicMoveRed>().moveSpeed = basicMoveRed.GetComponent<BasicMoveRed>().moveSpeed * 0.9f;
             }
+            */
+            basicMoveRed.GetComponent<BasicMoveRed>().isSlow++;
+            StartCoroutine(SlowDelayOther());
         }
 
         //Reverse
@@ -202,6 +224,15 @@ public class BasicMove : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         basicMoveRed.GetComponent<BasicMoveRed>().isStopped--;
     }
-
+    IEnumerator SlowDelayOther()
+    {
+        yield return new WaitForSeconds(3.0f);
+        basicMoveRed.GetComponent<BasicMoveRed>().isSlow--;
+    }
+    IEnumerator FastDelay()
+    {
+        yield return new WaitForSeconds(3.0f);
+        isFast--;
+    }
 
 }
