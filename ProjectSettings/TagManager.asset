@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Player2
+  - debufspeed
+  - freeze
+  - reset
+  - reverse
+  - speed
   layers:
   - Default
   - TransparentFX

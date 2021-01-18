@@ -409,7 +409,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 660052382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08dd9315187db7c48aed85c651a1497e, type: 3}
+  m_Script: {fileID: 11500000, guid: 80e608329b5cad24aaaf7490d1463293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mazeRows: 10
@@ -642,6 +642,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1047469457}
   moveSpeed: 1
+  maxSpeed: 2
+  minSpeed: 0.5
+  tmpMoveSpeed: 0
+  isReverse: 0
+  isStopped: 0
+  basicMoveRed: {fileID: 1448062556}
 --- !u!50 &1047469459
 Rigidbody2D:
   serializedVersion: 4
@@ -1034,10 +1040,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1448062557}
-  offset2p: 14
-  mazeRows: 0
-  mazeColumns: 0
   moveSpeed: 1
+  maxSpeed: 2
+  minSpeed: 0.5
+  tmpMoveSpeed: 0
+  isReverse: 0
+  isStopped: 0
+  basicMove: {fileID: 1047469456}
 --- !u!50 &1448062559
 Rigidbody2D:
   serializedVersion: 4

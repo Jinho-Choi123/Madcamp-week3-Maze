@@ -7,18 +7,22 @@ public class BasicMoveRed : MonoBehaviour
 {
     public static string winner = "";
     public Animator animator;
-    public int offset2p = 14;
-    public int mazeRows;
-    public int mazeColumns;
-    int now_position = 0; // right 는 1 left 는 -1 멈춤은 0
-    
+
+    public float moveSpeed = 1.0f;
+    public float maxSpeed = 2.0f;
+    public float minSpeed = 0.5f;
+    public float tmpMoveSpeed = 1.0f;
+    public int isReverse = 0;
+    public int isStopped = 0;
+    [SerializeField]
+    private GameObject basicMove;
+
     // Start is called before the first frame update
     void Start()
     {
          transform.position = new Vector2(0,0);
     }
     
-    public float moveSpeed = 1.0f;
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -74,6 +78,40 @@ public class BasicMoveRed : MonoBehaviour
         if(!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) &&!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow)){
             SetAnimator( 0.0f , 0.0f);
         }
+
+        //Reverse
+        if (isReverse >= 1)
+        {
+            if (moveSpeed > 0)
+            {
+                moveSpeed = -1 * moveSpeed;
+            }
+        }
+        if (isReverse == 0)
+        {
+            if (moveSpeed < 0)
+            {
+                moveSpeed = -1 * moveSpeed;
+            }
+        }
+
+        //freeze 후 moveSpeed = tmpMoveSpeed 로 넘겨주기 위해
+        if (moveSpeed != 0)
+        {
+            tmpMoveSpeed = moveSpeed;
+        }
+
+        //freeze
+        if (isStopped >= 1)
+        {
+            moveSpeed = 0;
+        }
+        if (isStopped == 0)
+        {
+            moveSpeed = tmpMoveSpeed;
+        }
+
+
     }
 
     //animation 조정.
@@ -101,5 +139,63 @@ public class BasicMoveRed : MonoBehaviour
         }
 
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //max 2.0f까지만 하도록 조절
+        if (collision.gameObject.CompareTag("speed"))
+        {
+            Destroy(collision.gameObject);
+            if (1.1f * moveSpeed <= maxSpeed)
+            {
+                moveSpeed += moveSpeed * 0.2f;
+            }
+        }
+
+        //min 0.5f 까지만 하도록 조절
+        if (collision.gameObject.CompareTag("debufspeed"))
+        {
+            Destroy(collision.gameObject);
+            if (0.93f * basicMove.GetComponent<BasicMove>().moveSpeed >= minSpeed)
+            {
+                basicMove.GetComponent<BasicMove>().moveSpeed = basicMove.GetComponent<BasicMove>().moveSpeed * 0.9f;
+            }
+        }
+
+        //reverse
+        if (collision.gameObject.CompareTag("reverse"))
+        {
+            Destroy(collision.gameObject);
+            basicMove.GetComponent<BasicMove>().isReverse++;
+            StartCoroutine(CountReverseDelayOther());
+        }
+
+        //freeze
+        if (collision.gameObject.CompareTag("freeze"))
+        {
+            Destroy(collision.gameObject);
+            basicMove.GetComponent<BasicMove>().isStopped++;
+            StartCoroutine(CountStoppedDelayOther());
+        }
+
+        //reset
+        if (collision.gameObject.CompareTag("reset"))
+        {
+            Destroy(collision.gameObject);
+            basicMove.GetComponent<BasicMove>().Start();
+        }
+
+    }
+
+    IEnumerator CountReverseDelayOther()
+    {
+        yield return new WaitForSeconds(3.0f);
+        basicMove.GetComponent<BasicMove>().isReverse--;
+    }
+    IEnumerator CountStoppedDelayOther()
+    {
+        yield return new WaitForSeconds(3.0f);
+        basicMove.GetComponent<BasicMove>().isStopped--;
+    }
+
 }

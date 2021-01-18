@@ -36,15 +36,6 @@ public class MazeGenerator_1 : MonoBehaviour {
     [SerializeField]
     private GameObject cellPrefab;
 
-
-    public GameObject itemPrefab0;
-    public GameObject itemPrefab1;
-    public GameObject itemPrefab2;
-    public GameObject itemPrefab3;
-    public GameObject itemPrefab4;
-
-    private GameObject[] Items;
-
     [Tooltip("If you want to disable the main sprite so the cell has no background, set to TRUE. This will create a maze with only walls.")]
     public bool disableCellSprite ;
 
@@ -87,7 +78,6 @@ public class MazeGenerator_1 : MonoBehaviour {
      */
     private void Start()
     {
-        Items = new GameObject[] { itemPrefab0,itemPrefab1,itemPrefab2,itemPrefab3,itemPrefab4};
         GenerateMaze(mazeRows, mazeColumns);
     }
 
@@ -304,14 +294,6 @@ public class MazeGenerator_1 : MonoBehaviour {
         // Set and instantiate cell GameObject.
         newCell.cellObject = Instantiate(cellPrefab, pos, cellPrefab.transform.rotation);
 
-        if(Random.Range(0,35) == 1){
-            newCell.itemObject = Instantiate(Items[Random.Range(0,5)],pos,itemPrefab0.transform.rotation);
-            if (mazeParent != null){    
-                newCell.itemObject.transform.parent = mazeParent.transform;
-            }
-            newCell.itemObject.name = "item - X:" + keyPos.x + " Y:" + keyPos.y;
-        }
-
         // Child new cell to parent.
         if (mazeParent != null) newCell.cellObject.transform.parent = mazeParent.transform;
         // Set name of cellObject.
@@ -359,7 +341,6 @@ public class MazeGenerator_1 : MonoBehaviour {
     {
         public Vector2 gridPos;
         public GameObject cellObject;
-        public GameObject itemObject;
         public CellScript cScript;
     }
 }

@@ -7,73 +7,114 @@ public class BasicMove : MonoBehaviour
 {
 
     public static string winner = "";
-        public Animator animator;
+    public Animator animator;
+    public float moveSpeed = 1.0f;
+    public float maxSpeed = 2.0f;
+    public float minSpeed = 0.5f;
+    public float tmpMoveSpeed = 1.0f;
+    public int isReverse = 0;
+    public int isStopped = 0;
+    [SerializeField]
+    private GameObject basicMoveRed;
+
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-         if(Setting.inSameMap){
-            transform.position = new Vector2(0.43F/2, 0.43F/2);
+        if (Setting.inSameMap) {
+            transform.position = new Vector2(0.43F / 2, 0.43F / 2);
         }
-        else{
-            transform.position = new Vector2(30,30);
+        else {
+            transform.position = new Vector2(30, 30);
         }
     }
-    
-    public float moveSpeed = 1.0f;
+
+
     // Update is called once per frame
     void FixedUpdate()
     {
         //왼쪽 위
-        if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
-        {
-            SetAnimator(-1.0f , 0.0f);
-            SetVector2(Vector2.left , Vector2.up);
+        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
+        {  
+            SetAnimator(-1.0f, 0.0f);
+            SetVector2(Vector2.left, Vector2.up);
         }
         //왼쪽 아래
-        else if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S)){
-            SetAnimator(-1.0f , 0.0f);
-            SetVector2(Vector2.left , Vector2.down);
+        else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S)) {
+            SetAnimator(-1.0f, 0.0f);
+            SetVector2(Vector2.left, Vector2.down);
         }
         //오른쪽 위
-        else if(Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
         {
-            SetAnimator( 1.0f , 0.0f);
-            SetVector2(Vector2.right , Vector2.up);
+            SetAnimator(1.0f, 0.0f);
+            SetVector2(Vector2.right, Vector2.up);
         }
         //오른쪽 아래
-        else if(Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
         {
-            SetAnimator( 1.0f , 0.0f);
-            SetVector2(Vector2.right , Vector2.down);
+            SetAnimator(1.0f, 0.0f);
+            SetVector2(Vector2.right, Vector2.down);
         }
         //왼쪽
-        else if(Input.GetKey(KeyCode.A))
-        {   
-            SetAnimator(-1.0f , 0.0f);
-            SetVector2(Vector2.left , Vector2.zero);
+        else if (Input.GetKey(KeyCode.A))
+        {
+            Debug.Log("press A");
+            SetAnimator(-1.0f, 0.0f);
+            SetVector2(Vector2.left, Vector2.zero);
         }
         //오른쪽
-        else if(Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
-            SetAnimator( 1.0f , 0.0f);
-            SetVector2(Vector2.right , Vector2.zero);
+            SetAnimator(1.0f, 0.0f);
+            SetVector2(Vector2.right, Vector2.zero);
         }
         //위
-        else if(Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.W))
         {
-            SetAnimator( 0.0f , 1.0f);
-            SetVector2(Vector2.zero , Vector2.up);
+            SetAnimator(0.0f, 1.0f);
+            SetVector2(Vector2.zero, Vector2.up);
         }
         //아래
-        else if(Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
-            SetAnimator( 0.0f , -1.0f);
-            SetVector2(Vector2.zero , Vector2.down);
+            SetAnimator(0.0f, -1.0f);
+            SetVector2(Vector2.zero, Vector2.down);
         }
-        
+
         //input이 없을때.
-        if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) &&!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)){
-            SetAnimator( 0.0f , 0.0f);
+        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
+            SetAnimator(0.0f, 0.0f);
+        }
+
+        //Reverse
+        if (isReverse >= 1)
+        {
+            if(moveSpeed > 0)
+            {
+                moveSpeed = -1 * moveSpeed;
+            }
+        }
+        if (isReverse == 0){
+            if(moveSpeed < 0)
+            {
+                moveSpeed = -1 * moveSpeed;
+            }
+        }
+
+        //freeze 후 moveSpeed = tmpMoveSpeed 로 넘겨주기 위해
+        if (moveSpeed != 0)
+        {
+            tmpMoveSpeed = moveSpeed;
+        }
+            
+        //freeze
+        if (isStopped >= 1)
+        {
+            moveSpeed = 0;
+        }
+        if(isStopped == 0)
+        {
+            moveSpeed = tmpMoveSpeed;
         }
 
     }
@@ -82,7 +123,7 @@ public class BasicMove : MonoBehaviour
     //보여주고 싶은 animation 방향대로 값을 1,0,-1로 입력해주면 됨.
     //ex, 오른쪽으로 간다 -> set_x는 1, set_y 는 0
     //ex, animator를 멈추고 싶다 -> set_x는 0 || set_y는 0
-    public void SetAnimator(float set_x , float set_y){
+    public void SetAnimator(float set_x, float set_y) {
         animator.SetFloat("HorizontalBlue", set_x);
         animator.SetFloat("VerticalBlue", set_y);
     }
@@ -91,17 +132,76 @@ public class BasicMove : MonoBehaviour
     //x는 좌또는 우로 움직이는 것.
     //y는 상또는 하로 움직이는것.
     //ex, 오른쪽으로 가면 -> vector_x에는 vector2.right를, vector_y에는 vector2.zero를.
-    public void SetVector2(Vector2 vector_x , Vector2 vector_y){
+    public void SetVector2(Vector2 vector_x, Vector2 vector_y) {
         transform.Translate(vector_x * moveSpeed * Time.deltaTime);
         transform.Translate(vector_y * moveSpeed * Time.deltaTime);
     }
 
-    void OnCollisionEnter2D(Collision2D c) { 
-        if(c.gameObject.GetComponent<SpriteRenderer>().color == Color.green) {
+    void OnCollisionEnter2D(Collision2D c) {
+        if (c.gameObject.GetComponent<SpriteRenderer>().color == Color.green) {
             winner = "Blue Mong Win!!";
             BasicMoveRed.winner = "";
             SceneManager.LoadScene("Success");
         }
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //max 2.0f까지만 하도록 조절
+        if (collision.gameObject.CompareTag("speed"))
+        {
+            Destroy(collision.gameObject);
+            if (1.1f * moveSpeed <= maxSpeed)
+            {
+                moveSpeed += moveSpeed * 0.2f;
+            }
+        }
+
+        //min 0.5f 까지만 하도록 조절
+        if (collision.gameObject.CompareTag("debufspeed"))
+        {
+            Destroy(collision.gameObject);
+            if (0.93f * basicMoveRed.GetComponent<BasicMoveRed>().moveSpeed >= minSpeed)
+            {
+                basicMoveRed.GetComponent<BasicMoveRed>().moveSpeed = basicMoveRed.GetComponent<BasicMoveRed>().moveSpeed * 0.9f;
+            }
+        }
+
+        //Reverse
+        if (collision.gameObject.CompareTag("reverse"))
+        {
+            Destroy(collision.gameObject);
+            basicMoveRed.GetComponent<BasicMoveRed>().isReverse++;
+            StartCoroutine(ReverseDelayOther());
+        }
+
+        //freeze
+        if (collision.gameObject.CompareTag("freeze"))
+        {
+            Destroy(collision.gameObject);
+            basicMoveRed.GetComponent<BasicMoveRed>().isStopped++;
+            StartCoroutine(StoppedDelayOther());
+        }
+
+        //reset
+        if (collision.gameObject.CompareTag("reset"))
+        {
+            Destroy(collision.gameObject);
+            basicMoveRed.GetComponent<BasicMoveRed>().transform.position = new Vector2(0, 0);
+        }
+
+    }
+
+    IEnumerator ReverseDelayOther()
+    {
+        yield return new WaitForSeconds(3.0f);
+        basicMoveRed.GetComponent<BasicMoveRed>().isReverse--;
+    }
+    IEnumerator StoppedDelayOther()
+    {
+        yield return new WaitForSeconds(3.0f);
+        basicMoveRed.GetComponent<BasicMoveRed>().isStopped--;
+    }
+
+
 }

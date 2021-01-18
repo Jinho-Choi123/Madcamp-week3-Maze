@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SuccessMenu : MonoBehaviour
 {
     public void playAgain() {
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene(StartGame.game_type);
     }
 
     public void gotoMenu() {

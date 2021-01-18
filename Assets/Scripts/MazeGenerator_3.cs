@@ -1,22 +1,10 @@
-﻿/* ----------------------------
- * 2D Maze Generator for Unity.
- * Uses Deapth-First searching 
- * and Recursive Backtracking.
- * ----------------------------
- * Generates a 2x2 centre room in 
- * the middle of the Maze.
- * ----------------------------
- * Author: c00pala
- * ~13/05/2018~
- * ---------------------------- */
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MazeGenerator_2 : MonoBehaviour {
-
-    #region Variables:
+public class MazeGenerator_3 : MonoBehaviour
+{
+   #region Variables:
     // ------------------------------------------------------
     // User defined variables - set in editor:
     // ------------------------------------------------------
@@ -116,7 +104,7 @@ public class MazeGenerator_2 : MonoBehaviour {
         InitValues();
 
         // Set starting point, set spawn point to start.
-        Vector2 startPos = new Vector2(-(cellSize * (mazeColumns / 2)) + (cellSize / 2) + 30, -(cellSize * (mazeRows / 2)) + (cellSize / 2) + 30);
+        Vector2 startPos = new Vector2(-(cellSize * (mazeColumns / 2)) + (cellSize / 2), -(cellSize * (mazeRows / 2)) + (cellSize / 2));
         Vector2 spawnPos = startPos;
 
         for (int x = 1; x <= mazeColumns; x++)
@@ -316,7 +304,7 @@ public class MazeGenerator_2 : MonoBehaviour {
         // Set and instantiate cell GameObject.
         newCell.cellObject = Instantiate(cellPrefab, pos, cellPrefab.transform.rotation);
 
-        if( (keyPos.x == reset_item_x[0] && keyPos.y == reset_item_y[0]) ||  (keyPos.x == reset_item_x[1] && keyPos.y == reset_item_y[1])|| (keyPos.x == reset_item_x[2] && keyPos.y == reset_item_y[2])){
+        if( (keyPos.x == reset_item_x[0] && keyPos.y == reset_item_y[0]) || (keyPos.x == reset_item_x[1] && keyPos.y == reset_item_y[1]) || (keyPos.x == reset_item_x[2] && keyPos.y == reset_item_y[2])){
             newCell.itemObject = Instantiate(Items[2],pos,itemPrefab0.transform.rotation);
             if (mazeParent != null){    
                 newCell.itemObject.transform.parent = mazeParent.transform;

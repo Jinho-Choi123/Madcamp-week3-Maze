@@ -48,7 +48,7 @@ public class GamePause1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape)){
+        if(Input.GetKeyUp(KeyCode.Space)){
             if(isPause == false) {
                 SetPause();
             } else {
