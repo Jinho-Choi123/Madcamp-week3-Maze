@@ -433,6 +433,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 599534012}
   moveSpeed: 1
+  maxSpeed: 2
+  minSpeed: 0.5
+  tmpMoveSpeed: 0
+  isReverse: 0
+  isStopped: 1
+  basicMoveRed: {fileID: 0}
 --- !u!50 &599534014
 Rigidbody2D:
   serializedVersion: 4
@@ -740,10 +746,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1451954362}
-  offset2p: 14
-  mazeRows: 0
-  mazeColumns: 0
   moveSpeed: 1
+  maxSpeed: 2
+  minSpeed: 0.5
+  tmpMoveSpeed: 0
+  isReverse: 0
+  isStopped: 0
+  basicMove: {fileID: 0}
 --- !u!50 &1451954364
 Rigidbody2D:
   serializedVersion: 4

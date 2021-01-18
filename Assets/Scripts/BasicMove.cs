@@ -14,6 +14,7 @@ public class BasicMove : MonoBehaviour
     public float tmpMoveSpeed;
     public int isReverse = 0;
     public bool isStopped = true;
+    public bool isDead = false;
     [SerializeField]
     private GameObject basicMoveRed;
 
@@ -32,58 +33,61 @@ public class BasicMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //왼쪽 위
-        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
-        {
-            SetAnimator(-1.0f, 0.0f);
-            SetVector2(Vector2.left, Vector2.up);
-        }
-        //왼쪽 아래
-        else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S)) {
-            SetAnimator(-1.0f, 0.0f);
-            SetVector2(Vector2.left, Vector2.down);
-        }
-        //오른쪽 위
-        else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
-        {
-            SetAnimator(1.0f, 0.0f);
-            SetVector2(Vector2.right, Vector2.up);
-        }
-        //오른쪽 아래
-        else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
-        {
-            SetAnimator(1.0f, 0.0f);
-            SetVector2(Vector2.right, Vector2.down);
-        }
-        //왼쪽
-        else if (Input.GetKey(KeyCode.A))
-        {
-            SetAnimator(-1.0f, 0.0f);
-            SetVector2(Vector2.left, Vector2.zero);
-        }
-        //오른쪽
-        else if (Input.GetKey(KeyCode.D))
-        {
-            SetAnimator(1.0f, 0.0f);
-            SetVector2(Vector2.right, Vector2.zero);
-        }
-        //위
-        else if (Input.GetKey(KeyCode.W))
-        {
-            SetAnimator(0.0f, 1.0f);
-            SetVector2(Vector2.zero, Vector2.up);
-        }
-        //아래
-        else if (Input.GetKey(KeyCode.S))
-        {
-            SetAnimator(0.0f, -1.0f);
-            SetVector2(Vector2.zero, Vector2.down);
-        }
+        if(!isDead){
+            //왼쪽 위
+            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
+            {
+                SetAnimator(-1.0f, 0.0f);
+                SetVector2(Vector2.left, Vector2.up);
+            }
+            //왼쪽 아래
+            else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S)) {
+                SetAnimator(-1.0f, 0.0f);
+                SetVector2(Vector2.left, Vector2.down);
+            }
+            //오른쪽 위
+            else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
+            {
+                SetAnimator(1.0f, 0.0f);
+                SetVector2(Vector2.right, Vector2.up);
+            }
+            //오른쪽 아래
+            else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
+            {
+                SetAnimator(1.0f, 0.0f);
+                SetVector2(Vector2.right, Vector2.down);
+            }
+            //왼쪽
+            else if (Input.GetKey(KeyCode.A))
+            {
+                SetAnimator(-1.0f, 0.0f);
+                SetVector2(Vector2.left, Vector2.zero);
+            }
+            //오른쪽
+            else if (Input.GetKey(KeyCode.D))
+            {
+                SetAnimator(1.0f, 0.0f);
+                SetVector2(Vector2.right, Vector2.zero);
+            }
+            //위
+            else if (Input.GetKey(KeyCode.W))
+            {
+                SetAnimator(0.0f, 1.0f);
+                SetVector2(Vector2.zero, Vector2.up);
+            }
+            //아래
+            else if (Input.GetKey(KeyCode.S))
+            {
+                SetAnimator(0.0f, -1.0f);
+                SetVector2(Vector2.zero, Vector2.down);
+            }
 
-        //input이 없을때.
-        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
-            SetAnimator(0.0f, 0.0f);
+            //input이 없을때.
+            if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
+                SetAnimator(0.0f, 0.0f);
+            }
         }
+        
 
         //Reverse
         if (isReverse == 1)
@@ -120,6 +124,15 @@ public class BasicMove : MonoBehaviour
     public void SetVector2(Vector2 vector_x, Vector2 vector_y) {
         transform.Translate(vector_x * moveSpeed * Time.deltaTime);
         transform.Translate(vector_y * moveSpeed * Time.deltaTime);
+    }
+
+    public void ShowDeadAnimation(){
+        animator.SetFloat("HorizontalBlue", 0);
+        animator.SetFloat("VerticalBlue", 0);
+        animator.SetFloat("BlueDie", 1);
+    }
+    public void OffDeadAnimation(){
+        animator.SetFloat("BlueDie", 0);
     }
 
     void OnCollisionEnter2D(Collision2D c) {
@@ -177,8 +190,7 @@ public class BasicMove : MonoBehaviour
         {
             Debug.Log("item_reset 활성화");
             Destroy(collision.gameObject);
-            basicMoveRed.GetComponent<BasicMoveRed>().transform.position = new Vector2(0, 0);
-
+            StartCoroutine(ResetDelay());
             Debug.Log("Red moved to set.");
         }
 
@@ -194,6 +206,16 @@ public class BasicMove : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f);
         moveSpeed = -1 * moveSpeed;
+    }
+
+    IEnumerator ResetDelay()
+    {
+        basicMoveRed.GetComponent<BasicMoveRed>().isDead = true;
+        basicMoveRed.GetComponent<BasicMoveRed>().ShowDeadAnimation();
+        yield return new WaitForSeconds(1.04f);
+        basicMoveRed.GetComponent<BasicMoveRed>().OffDeadAnimation();
+        basicMoveRed.GetComponent<BasicMoveRed>().transform.position = new Vector2(0, 0);
+        basicMoveRed.GetComponent<BasicMoveRed>().isDead = false;
     }
 
 
