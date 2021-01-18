@@ -35,7 +35,20 @@ public class MazeGenerator_1 : MonoBehaviour {
     [SerializeField]
     private GameObject cellPrefab;
 
-    private GameObject itemPrefab;
+    public GameObject itemPrefab0;
+    public GameObject itemPrefab1;
+    public GameObject itemPrefab2;
+    public GameObject itemPrefab3;
+    public GameObject itemPrefab4;
+    public GameObject itemPrefab5;
+    public GameObject itemPrefab6;
+    public GameObject itemPrefab7;
+    public GameObject itemPrefab8;
+    public GameObject itemPrefab9;
+
+    private GameObject[] Items;
+    
+    
 
     [Tooltip("If you want to disable the main sprite so the cell has no background, set to TRUE. This will create a maze with only walls.")]
     public bool disableCellSprite ;
@@ -79,6 +92,8 @@ public class MazeGenerator_1 : MonoBehaviour {
      */
     private void Start()
     {
+        Items = new GameObject[] { itemPrefab0,itemPrefab1,itemPrefab2,itemPrefab3,itemPrefab4,
+                                   itemPrefab5,itemPrefab6,itemPrefab7,itemPrefab8,itemPrefab9 };
         GenerateMaze(mazeRows, mazeColumns);
     }
 
@@ -281,6 +296,15 @@ public class MazeGenerator_1 : MonoBehaviour {
         newCell.gridPos = keyPos;
         // Set and instantiate cell GameObject.
         newCell.cellObject = Instantiate(cellPrefab, pos, cellPrefab.transform.rotation);
+
+        if(Random.Range(0,19) == 10){
+            newCell.itemObject = Instantiate(Items[Random.Range(0,9)],pos,itemPrefab0.transform.rotation);
+            if (mazeParent != null){    
+                newCell.itemObject.transform.parent = mazeParent.transform;
+            }
+            newCell.itemObject.name = "item - X:" + keyPos.x + " Y:" + keyPos.y;
+        }
+
         // Child new cell to parent.
         if (mazeParent != null) newCell.cellObject.transform.parent = mazeParent.transform;
         // Set name of cellObject.
@@ -328,6 +352,7 @@ public class MazeGenerator_1 : MonoBehaviour {
     {
         public Vector2 gridPos;
         public GameObject cellObject;
+        public GameObject itemObject;
         public CellScript cScript;
     }
 }

@@ -154,6 +154,26 @@ MonoBehaviour:
   mazeColumns: 30
   cellPrefab: {fileID: 4218365258578076762, guid: 7fd1593c2b25d1c4cba84d6e299772bb,
     type: 3}
+  itemPrefab0: {fileID: 8187775853526737454, guid: d1ec65d3858d30d41a8c30caae02cc2d,
+    type: 3}
+  itemPrefab1: {fileID: 34427791283036028, guid: f3a2c608aba99a14dbf168cb1a766e39,
+    type: 3}
+  itemPrefab2: {fileID: 472302775192571002, guid: 3ec5fc04b24c4a34c9833b92595f1a9d,
+    type: 3}
+  itemPrefab3: {fileID: 2612955410547116149, guid: 749ef469fc6d96c4a984615ab00a160a,
+    type: 3}
+  itemPrefab4: {fileID: 7425785997374929597, guid: 41e6c15694496ed4aad4b64419ea1a64,
+    type: 3}
+  itemPrefab5: {fileID: 1145561418427887043, guid: 2e2c835781c2db648951dd65eb76f614,
+    type: 3}
+  itemPrefab6: {fileID: 6724814829247962462, guid: e9dbdfc12dd8ac74dbb8204363b8c542,
+    type: 3}
+  itemPrefab7: {fileID: 7988700060217675651, guid: 172cace40b6f7014b9eb6e3fde7dff9c,
+    type: 3}
+  itemPrefab8: {fileID: 3482069794523586115, guid: 56ab7728b4ef7e047977347e6ccbe4d4,
+    type: 3}
+  itemPrefab9: {fileID: 5648748570553342624, guid: c5af52affa6788046b1c33013290a753,
+    type: 3}
   disableCellSprite: 0
 --- !u!4 &40990601
 Transform:
@@ -201,6 +221,26 @@ MonoBehaviour:
   mazeRows: 30
   mazeColumns: 30
   cellPrefab: {fileID: 4218365258578076762, guid: 7fd1593c2b25d1c4cba84d6e299772bb,
+    type: 3}
+  itemPrefab0: {fileID: 8187775853526737454, guid: d1ec65d3858d30d41a8c30caae02cc2d,
+    type: 3}
+  itemPrefab1: {fileID: 34427791283036028, guid: f3a2c608aba99a14dbf168cb1a766e39,
+    type: 3}
+  itemPrefab2: {fileID: 472302775192571002, guid: 3ec5fc04b24c4a34c9833b92595f1a9d,
+    type: 3}
+  itemPrefab3: {fileID: 2612955410547116149, guid: 749ef469fc6d96c4a984615ab00a160a,
+    type: 3}
+  itemPrefab4: {fileID: 7425785997374929597, guid: 41e6c15694496ed4aad4b64419ea1a64,
+    type: 3}
+  itemPrefab5: {fileID: 1145561418427887043, guid: 2e2c835781c2db648951dd65eb76f614,
+    type: 3}
+  itemPrefab6: {fileID: 6724814829247962462, guid: e9dbdfc12dd8ac74dbb8204363b8c542,
+    type: 3}
+  itemPrefab7: {fileID: 7988700060217675651, guid: 172cace40b6f7014b9eb6e3fde7dff9c,
+    type: 3}
+  itemPrefab8: {fileID: 3482069794523586115, guid: 56ab7728b4ef7e047977347e6ccbe4d4,
+    type: 3}
+  itemPrefab9: {fileID: 5648748570553342624, guid: c5af52affa6788046b1c33013290a753,
     type: 3}
   disableCellSprite: 0
 --- !u!4 &134206792
