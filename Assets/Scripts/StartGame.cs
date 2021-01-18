@@ -25,6 +25,9 @@ public class StartGame : MonoBehaviour
     public void exit() {
         Application.Quit();
     }
+    public void setting() {
+        SceneManager.LoadScene("Setting");
+    }
 
     public void info() {
        SceneManager.LoadScene("Info");
