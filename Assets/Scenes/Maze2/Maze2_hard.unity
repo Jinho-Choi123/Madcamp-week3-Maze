@@ -290,10 +290,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 297574097}
-  offset2p: 14
-  mazeRows: 0
-  mazeColumns: 0
   moveSpeed: 1
+  maxSpeed: 2
+  minSpeed: 0.5
+  tmpMoveSpeed: 0
+  isReverse: 0
+  isStopped: 0
+  basicMove: {fileID: 454208689}
 --- !u!50 &297574099
 Rigidbody2D:
   serializedVersion: 4
@@ -461,6 +464,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 454208690}
   moveSpeed: 1
+  maxSpeed: 2
+  minSpeed: 0.5
+  tmpMoveSpeed: 0
+  isReverse: 0
+  isStopped: 1
+  basicMoveRed: {fileID: 297574096}
 --- !u!50 &454208692
 Rigidbody2D:
   serializedVersion: 4
@@ -571,6 +580,7 @@ Transform:
   m_LocalScale: {x: 0.4987635, y: 0.4987635, z: 0.4987635}
   m_Children:
   - {fileID: 778863791}
+  - {fileID: 1291493111}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -750,12 +760,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291493108}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -130.64, y: 22.56, z: -3.0195312}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -322.07648, y: -14.91689, z: -6.0540338}
+  m_LocalScale: {x: 2.0049582, y: 2.0049582, z: 2.0049582}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 454208695}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1427410863
 GameObject:

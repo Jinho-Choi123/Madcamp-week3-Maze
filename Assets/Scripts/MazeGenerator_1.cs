@@ -73,6 +73,8 @@ public class MazeGenerator_1 : MonoBehaviour {
     // Array of all possible neighbour positions.
     private Vector2[] neighbourPositions = new Vector2[] { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, 1), new Vector2(0, -1) };
 
+    private int[] reset_item_x = new int[3]{0,0,0};
+    private int[] reset_item_y = new int[3]{0,0,0};
     // Size of the cells, used to determine how far apart to place cells during generation.
     private float cellSize;
 
@@ -88,6 +90,17 @@ public class MazeGenerator_1 : MonoBehaviour {
     private void Start()
     {
         Items = new GameObject[] { itemPrefab0,itemPrefab1,itemPrefab2,itemPrefab3,itemPrefab4};
+
+        //1번째 reset
+        reset_item_x[0] = Random.Range(2,mazeColumns);
+        reset_item_y[0] = Random.Range(1,15);
+        //2번째 reset
+        reset_item_x[1] = 15;
+        reset_item_y[1] = 15;
+        //3번째 reset
+        reset_item_x[2] = Random.Range(2,mazeColumns);
+        reset_item_y[2] = Random.Range(16,mazeRows);
+
         GenerateMaze(mazeRows, mazeColumns);
     }
 
@@ -280,6 +293,9 @@ public class MazeGenerator_1 : MonoBehaviour {
         RemoveWall(centreCells[3].cScript, 3);
         RemoveWall(centreCells[3].cScript, 1);
 
+
+        
+
         // Create a List of ints, using this, select one at random and remove it.
         // We then use the remaining 3 ints to remove 3 of the centre cells from the 'unvisited' list.
         // This ensures that one of the centre cells will connect to the maze but the other three won't.
@@ -303,9 +319,23 @@ public class MazeGenerator_1 : MonoBehaviour {
         newCell.gridPos = keyPos;
         // Set and instantiate cell GameObject.
         newCell.cellObject = Instantiate(cellPrefab, pos, cellPrefab.transform.rotation);
+        
 
-        if(Random.Range(0,35) == 1){
-            newCell.itemObject = Instantiate(Items[Random.Range(0,5)],pos,itemPrefab0.transform.rotation);
+        if( (keyPos.x == reset_item_x[0] && keyPos.y == reset_item_y[0]) || keyPos.x == 15 && keyPos.y == 15 || (keyPos.x == reset_item_x[2] && keyPos.y == reset_item_y[2])){
+            newCell.itemObject = Instantiate(Items[2],pos,itemPrefab0.transform.rotation);
+            if (mazeParent != null){    
+                newCell.itemObject.transform.parent = mazeParent.transform;
+            }
+            newCell.itemObject.name = "item - X:" + keyPos.x + " Y:" + keyPos.y;
+        }
+        else if(Random.Range(0,35) == 1){
+
+            int random_int = Random.Range(0,4);
+            
+            if(random_int >= 2)
+                random_int++;
+
+            newCell.itemObject = Instantiate(Items[random_int],pos,itemPrefab0.transform.rotation);
             if (mazeParent != null){    
                 newCell.itemObject.transform.parent = mazeParent.transform;
             }
