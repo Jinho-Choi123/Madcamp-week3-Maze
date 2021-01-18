@@ -154,6 +154,16 @@ MonoBehaviour:
   mazeColumns: 30
   cellPrefab: {fileID: 4218365258578076762, guid: 7fd1593c2b25d1c4cba84d6e299772bb,
     type: 3}
+  itemPrefab0: {fileID: 5412272184786293337, guid: f3d1d88ed60e23d4480578bc4e01299e,
+    type: 3}
+  itemPrefab1: {fileID: 4281541060699122210, guid: 09f8275d5b9a80f4c8b6be2fedf233b5,
+    type: 3}
+  itemPrefab2: {fileID: 2230148241748668863, guid: 9e2909a0ee1380a46b5e67381b3ff173,
+    type: 3}
+  itemPrefab3: {fileID: 1528181788554953271, guid: 1a5939e50430d874ebc37f008030c3f1,
+    type: 3}
+  itemPrefab4: {fileID: 7527486370187340200, guid: c2d6f68046258ce489fbf1fe87b2dc01,
+    type: 3}
   disableCellSprite: 0
 --- !u!4 &40990601
 Transform:
@@ -201,6 +211,16 @@ MonoBehaviour:
   mazeRows: 30
   mazeColumns: 30
   cellPrefab: {fileID: 4218365258578076762, guid: 7fd1593c2b25d1c4cba84d6e299772bb,
+    type: 3}
+  itemPrefab0: {fileID: 5412272184786293337, guid: f3d1d88ed60e23d4480578bc4e01299e,
+    type: 3}
+  itemPrefab1: {fileID: 4281541060699122210, guid: 09f8275d5b9a80f4c8b6be2fedf233b5,
+    type: 3}
+  itemPrefab2: {fileID: 2230148241748668863, guid: 9e2909a0ee1380a46b5e67381b3ff173,
+    type: 3}
+  itemPrefab3: {fileID: 1528181788554953271, guid: 1a5939e50430d874ebc37f008030c3f1,
+    type: 3}
+  itemPrefab4: {fileID: 7527486370187340200, guid: c2d6f68046258ce489fbf1fe87b2dc01,
     type: 3}
   disableCellSprite: 0
 --- !u!4 &134206792
@@ -271,9 +291,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 297574097}
   offset2p: 14
-  moveSpeed: 1
   mazeRows: 0
   mazeColumns: 0
+  moveSpeed: 1
 --- !u!50 &297574099
 Rigidbody2D:
   serializedVersion: 4
@@ -632,7 +652,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.5
+    width: 0.49
     height: 1
   near clip plane: 0
   far clip plane: 1000
@@ -654,6 +674,89 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &1291493108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1291493111}
+  - component: {fileID: 1291493110}
+  - component: {fileID: 1291493109}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &1291493109
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291493108}
+  m_Enabled: 1
+--- !u!20 &1291493110
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291493108}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0.49
+    y: 0
+    width: 0.02
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 8.051541
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &1291493111
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291493108}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -130.64, y: 22.56, z: -3.0195312}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1427410863
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,9 +833,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.5
+    x: 0.51
     y: 0
-    width: 0.5
+    width: 0.49
     height: 1
   near clip plane: 0.3
   far clip plane: 1000

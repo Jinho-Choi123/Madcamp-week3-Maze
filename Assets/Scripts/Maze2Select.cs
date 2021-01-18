@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Maze2Select : MonoBehaviour
 {
+    public Button easymode;
     
     public void maze1_easy() {
         SceneManager.LoadScene("Maze2_easy");
@@ -15,6 +17,7 @@ public class Maze2Select : MonoBehaviour
     }
 
     public void maze1_hard() {
+        Destroy(easymode);
         SceneManager.LoadScene("Maze2_hard");
     }
 

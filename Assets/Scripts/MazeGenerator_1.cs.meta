@@ -6,6 +6,16 @@ MonoImporter:
   defaultReferences:
   - cellPrefab: {fileID: 4218365258578076762, guid: 7fd1593c2b25d1c4cba84d6e299772bb,
       type: 3}
+  - itemPrefab0: {fileID: 5412272184786293337, guid: f3d1d88ed60e23d4480578bc4e01299e,
+      type: 3}
+  - itemPrefab1: {fileID: 4281541060699122210, guid: 09f8275d5b9a80f4c8b6be2fedf233b5,
+      type: 3}
+  - itemPrefab2: {fileID: 2230148241748668863, guid: 9e2909a0ee1380a46b5e67381b3ff173,
+      type: 3}
+  - itemPrefab3: {fileID: 1528181788554953271, guid: 1a5939e50430d874ebc37f008030c3f1,
+      type: 3}
+  - itemPrefab4: {fileID: 7527486370187340200, guid: c2d6f68046258ce489fbf1fe87b2dc01,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -197,9 +197,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.5
+    x: 0.51
     y: 0
-    width: 0.5
+    width: 0.49
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -221,6 +221,64 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &236831874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 236831876}
+  - component: {fileID: 236831875}
+  m_Layer: 0
+  m_Name: MazeGenerator1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &236831875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236831874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08dd9315187db7c48aed85c651a1497e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 20
+  mazeColumns: 20
+  cellPrefab: {fileID: 4218365258578076762, guid: 7fd1593c2b25d1c4cba84d6e299772bb,
+    type: 3}
+  itemPrefab0: {fileID: 5412272184786293337, guid: f3d1d88ed60e23d4480578bc4e01299e,
+    type: 3}
+  itemPrefab1: {fileID: 4281541060699122210, guid: 09f8275d5b9a80f4c8b6be2fedf233b5,
+    type: 3}
+  itemPrefab2: {fileID: 2230148241748668863, guid: 9e2909a0ee1380a46b5e67381b3ff173,
+    type: 3}
+  itemPrefab3: {fileID: 1528181788554953271, guid: 1a5939e50430d874ebc37f008030c3f1,
+    type: 3}
+  itemPrefab4: {fileID: 7527486370187340200, guid: c2d6f68046258ce489fbf1fe87b2dc01,
+    type: 3}
+  disableCellSprite: 0
+--- !u!4 &236831876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236831874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.574573, y: 2.2447815, z: -9.0508175}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &598746721
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +357,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.5
+    width: 0.49
     height: 1
   near clip plane: 0
   far clip plane: 1000
@@ -486,9 +544,9 @@ Transform:
   m_Children:
   - {fileID: 598746722}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &602793274
+--- !u!1 &767705092
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -496,45 +554,138 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 602793276}
-  - component: {fileID: 602793275}
+  - component: {fileID: 767705095}
+  - component: {fileID: 767705094}
+  - component: {fileID: 767705093}
   m_Layer: 0
-  m_Name: MazeGenerator1
+  m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &602793275
+--- !u!81 &767705093
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767705092}
+  m_Enabled: 1
+--- !u!20 &767705094
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767705092}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0.49
+    y: 0
+    width: 0.02
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 8.051541
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &767705095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767705092}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.8454688, y: 9.743365, z: -3.0195312}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &918047141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 918047143}
+  - component: {fileID: 918047142}
+  m_Layer: 0
+  m_Name: MazeGenerator2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &918047142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 602793274}
+  m_GameObject: {fileID: 918047141}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08dd9315187db7c48aed85c651a1497e, type: 3}
+  m_Script: {fileID: 11500000, guid: 14e9eadaec495da48a992b84304ea5b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mazeRows: 20
   mazeColumns: 20
   cellPrefab: {fileID: 4218365258578076762, guid: 7fd1593c2b25d1c4cba84d6e299772bb,
     type: 3}
+  itemPrefab0: {fileID: 5412272184786293337, guid: f3d1d88ed60e23d4480578bc4e01299e,
+    type: 3}
+  itemPrefab1: {fileID: 4281541060699122210, guid: 09f8275d5b9a80f4c8b6be2fedf233b5,
+    type: 3}
+  itemPrefab2: {fileID: 2230148241748668863, guid: 9e2909a0ee1380a46b5e67381b3ff173,
+    type: 3}
+  itemPrefab3: {fileID: 1528181788554953271, guid: 1a5939e50430d874ebc37f008030c3f1,
+    type: 3}
+  itemPrefab4: {fileID: 7527486370187340200, guid: c2d6f68046258ce489fbf1fe87b2dc01,
+    type: 3}
   disableCellSprite: 0
---- !u!4 &602793276
+--- !u!4 &918047143
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 602793274}
+  m_GameObject: {fileID: 918047141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.574573, y: 2.2447815, z: -9.0508175}
+  m_LocalPosition: {x: 10.66, y: 9.74, z: -206.72168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1451954361
 GameObject:
@@ -590,9 +741,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1451954362}
   offset2p: 14
-  moveSpeed: 1
   mazeRows: 0
   mazeColumns: 0
+  moveSpeed: 1
 --- !u!50 &1451954364
 Rigidbody2D:
   serializedVersion: 4
@@ -704,53 +855,5 @@ Transform:
   m_Children:
   - {fileID: 217918754}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1600274629
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1600274631}
-  - component: {fileID: 1600274630}
-  m_Layer: 0
-  m_Name: MazeGenerator2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1600274630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1600274629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e9eadaec495da48a992b84304ea5b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeRows: 20
-  mazeColumns: 20
-  cellPrefab: {fileID: 4218365258578076762, guid: 7fd1593c2b25d1c4cba84d6e299772bb,
-    type: 3}
-  disableCellSprite: 0
---- !u!4 &1600274631
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1600274629}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.66, y: 9.74, z: -206.72168}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

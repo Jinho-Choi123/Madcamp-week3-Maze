@@ -18,6 +18,9 @@ public class Setting : MonoBehaviour
     }
 
     void Start() {
+
+        sameMap_toggle.GetComponent<Toggle>().isOn = inSameMap;
+        itemEnable_toggle.GetComponent<Toggle>().isOn = itemEnable;
         sameMap_toggle.GetComponent<Toggle>().onValueChanged.AddListener((bool bOn) => {
             Debug.Log("hello world");
 

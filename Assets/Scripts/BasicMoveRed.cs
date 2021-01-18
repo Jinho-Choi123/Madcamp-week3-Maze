@@ -96,6 +96,7 @@ public class BasicMoveRed : MonoBehaviour
     void OnCollisionEnter2D(Collision2D c) { 
         if(c.gameObject.GetComponent<SpriteRenderer>().color == Color.green) {
             winner = "Red Mong Win!!";
+            BasicMove.winner = "";
             SceneManager.LoadScene("Success");
         }
 

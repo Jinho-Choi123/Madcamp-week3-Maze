@@ -11,7 +11,12 @@ public class BasicMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         transform.position = new Vector2(30,30);
+         if(Setting.inSameMap){
+            transform.position = new Vector2(0.43F/2, 0.43F/2);
+        }
+        else{
+            transform.position = new Vector2(30,30);
+        }
     }
     
     public float moveSpeed = 1.0f;
@@ -94,6 +99,7 @@ public class BasicMove : MonoBehaviour
     void OnCollisionEnter2D(Collision2D c) { 
         if(c.gameObject.GetComponent<SpriteRenderer>().color == Color.green) {
             winner = "Blue Mong Win!!";
+            BasicMoveRed.winner = "";
             SceneManager.LoadScene("Success");
         }
 
