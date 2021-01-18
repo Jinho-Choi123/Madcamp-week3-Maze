@@ -316,26 +316,35 @@ public class MazeGenerator_2 : MonoBehaviour {
         // Set and instantiate cell GameObject.
         newCell.cellObject = Instantiate(cellPrefab, pos, cellPrefab.transform.rotation);
 
-        if( (keyPos.x == reset_item_x[0] && keyPos.y == reset_item_y[0]) ||  (keyPos.x == reset_item_x[1] && keyPos.y == reset_item_y[1])|| (keyPos.x == reset_item_x[2] && keyPos.y == reset_item_y[2])){
-            newCell.itemObject = Instantiate(Items[2],pos,itemPrefab0.transform.rotation);
-            if (mazeParent != null){    
-                newCell.itemObject.transform.parent = mazeParent.transform;
-            }
-            newCell.itemObject.name = "item - X:" + keyPos.x + " Y:" + keyPos.y;
-        }
-        else if(Random.Range(0,35) == 1){
-
-            int random_int = Random.Range(0,4);
+        //setting에서 itemenable을 체크한다면.
+        if(Setting.itemEnable){
+            //reset item 생성. 3개만 만들기
+            if((keyPos.x == reset_item_x[0] && keyPos.y == reset_item_y[0]) ||  (keyPos.x == reset_item_x[1] && keyPos.y == reset_item_y[1])|| (keyPos.x == reset_item_x[2] && keyPos.y == reset_item_y[2])){
+                newCell.itemObject = Instantiate(Items[2],pos,itemPrefab0.transform.rotation);
             
-            if(random_int >= 2)
-                random_int++;
-
-            newCell.itemObject = Instantiate(Items[random_int],pos,itemPrefab0.transform.rotation);
-            if (mazeParent != null){    
-                newCell.itemObject.transform.parent = mazeParent.transform;
+                if (mazeParent != null){    
+                    newCell.itemObject.transform.parent = mazeParent.transform;
+                }
+            
+                newCell.itemObject.name = "item - X:" + keyPos.x + " Y:" + keyPos.y;
+            
             }
-            newCell.itemObject.name = "item - X:" + keyPos.x + " Y:" + keyPos.y;
+            //reset item 외 다른 아이템 생성.
+            else if(Random.Range(0,35) == 1){
+
+                int random_int = Random.Range(0,4);
+                
+                if(random_int >= 2)
+                    random_int++;
+
+                newCell.itemObject = Instantiate(Items[random_int],pos,itemPrefab0.transform.rotation);
+                if (mazeParent != null){    
+                    newCell.itemObject.transform.parent = mazeParent.transform;
+                }
+                newCell.itemObject.name = "item - X:" + keyPos.x + " Y:" + keyPos.y;
+            }
         }
+        
 
         // Child new cell to parent.
         if (mazeParent != null) newCell.cellObject.transform.parent = mazeParent.transform;
@@ -372,7 +381,7 @@ public class MazeGenerator_2 : MonoBehaviour {
         // Create an empty parent object to hold the maze in the scene.
         mazeParent = new GameObject();
         mazeParent.transform.position = Vector2.zero;
-        mazeParent.name = "Maze";
+        mazeParent.name = "Maze2";
     }
 
     public bool IsOdd(int value)

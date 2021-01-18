@@ -525,6 +525,7 @@ MonoBehaviour:
   isStopped: 0
   isSlow: 0
   isFast: 0
+  isDead: 0
   basicMove: {fileID: 454208689}
 --- !u!50 &297574099
 Rigidbody2D:
@@ -777,6 +778,7 @@ MonoBehaviour:
   isStopped: 0
   isSlow: 0
   isFast: 0
+  isDead: 0
   basicMoveRed: {fileID: 297574096}
 --- !u!50 &454208692
 Rigidbody2D:
@@ -1432,7 +1434,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.6992486, g: 0.69806874, b: 0.7830189, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

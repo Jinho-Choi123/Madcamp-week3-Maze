@@ -16,6 +16,7 @@ public class BasicMove : MonoBehaviour
     public int isStopped = 0;
     public int isSlow = 0;
     public int isFast = 0;
+    public bool isDead = false;
     [SerializeField]
     private GameObject basicMoveRed;
 
@@ -34,58 +35,64 @@ public class BasicMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //왼쪽 위
-        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
-        {  
-            SetAnimator(-1.0f, 0.0f);
-            SetVector2(Vector2.left * new Vector2(0.707f,0), Vector2.up * new Vector2(0,0.707f));
-        }
-        //왼쪽 아래
-        else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S)) {
-            SetAnimator(-1.0f, 0.0f);
-            SetVector2(Vector2.left * new Vector2(0.707f,0), Vector2.down* new Vector2(0,0.707f));
-        }
-        //오른쪽 위
-        else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
-        {
-            SetAnimator(1.0f, 0.0f);
-            SetVector2(Vector2.right* new Vector2(0.707f,0), Vector2.up* new Vector2(0,0.707f));
-        }
-        //오른쪽 아래
-        else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
-        {
-            SetAnimator(1.0f, 0.0f);
-            SetVector2(Vector2.right* new Vector2(0.707f,0), Vector2.down* new Vector2(0,0.707f));
-        }
-        //왼쪽
-        else if (Input.GetKey(KeyCode.A))
-        {
-            Debug.Log("press A");
-            SetAnimator(-1.0f, 0.0f);
-            SetVector2(Vector2.left, Vector2.zero);
-        }
-        //오른쪽
-        else if (Input.GetKey(KeyCode.D))
-        {
-            SetAnimator(1.0f, 0.0f);
-            SetVector2(Vector2.right, Vector2.zero);
-        }
-        //위
-        else if (Input.GetKey(KeyCode.W))
-        {
-            SetAnimator(0.0f, 1.0f);
-            SetVector2(Vector2.zero, Vector2.up);
-        }
-        //아래
-        else if (Input.GetKey(KeyCode.S))
-        {
-            SetAnimator(0.0f, -1.0f);
-            SetVector2(Vector2.zero, Vector2.down);
-        }
+        //죽은 상태가 아닐 때 실행.
+        if(!isDead){
+            /*
+             *  KeyBoard Input
+             */
+            //왼쪽 위
+            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
+            {  
+                SetAnimator(-1.0f, 0.0f);
+                SetVector2(Vector2.left * new Vector2(0.707f,0), Vector2.up * new Vector2(0,0.707f));
+            }
+            //왼쪽 아래
+            else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S)) {
+                SetAnimator(-1.0f, 0.0f);
+                SetVector2(Vector2.left * new Vector2(0.707f,0), Vector2.down* new Vector2(0,0.707f));
+            }
+            //오른쪽 위
+            else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
+            {
+                SetAnimator(1.0f, 0.0f);
+                SetVector2(Vector2.right* new Vector2(0.707f,0), Vector2.up* new Vector2(0,0.707f));
+            }
+            //오른쪽 아래
+            else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
+            {
+                SetAnimator(1.0f, 0.0f);
+                SetVector2(Vector2.right* new Vector2(0.707f,0), Vector2.down* new Vector2(0,0.707f));
+            }
+            //왼쪽
+            else if (Input.GetKey(KeyCode.A))
+            {
+                Debug.Log("press A");
+                SetAnimator(-1.0f, 0.0f);
+                SetVector2(Vector2.left, Vector2.zero);
+            }
+            //오른쪽
+            else if (Input.GetKey(KeyCode.D))
+            {
+                SetAnimator(1.0f, 0.0f);
+                SetVector2(Vector2.right, Vector2.zero);
+            }
+            //위
+            else if (Input.GetKey(KeyCode.W))
+            {
+                SetAnimator(0.0f, 1.0f);
+                SetVector2(Vector2.zero, Vector2.up);
+            }
+            //아래
+            else if (Input.GetKey(KeyCode.S))
+            {
+                SetAnimator(0.0f, -1.0f);
+                SetVector2(Vector2.zero, Vector2.down);
+            }
 
-        //input이 없을때.
-        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
-            SetAnimator(0.0f, 0.0f);
+            //input이 없을때.
+            if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) {
+                SetAnimator(0.0f, 0.0f);
+            }
         }
 
         if (moveSpeed >= 1.0f && moveSpeed < maxSpeed)
@@ -208,8 +215,10 @@ public class BasicMove : MonoBehaviour
         //reset
         if (collision.gameObject.CompareTag("reset"))
         {
+             Debug.Log("item_reset 활성화");
             Destroy(collision.gameObject);
-            basicMoveRed.GetComponent<BasicMoveRed>().transform.position = new Vector2(0, 0);
+            StartCoroutine(ResetDelay());
+            Debug.Log("Red moved to set.");
         }
 
     }
@@ -233,6 +242,25 @@ public class BasicMove : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f);
         isFast--;
+    }
+
+     public void ShowDeadAnimation(){
+        animator.SetFloat("HorizontalBlue", 0);
+        animator.SetFloat("VerticalBlue", 0);
+        animator.SetFloat("BlueDie", 1);
+    }
+    public void OffDeadAnimation(){
+        animator.SetFloat("BlueDie", 0);
+    }
+
+     IEnumerator ResetDelay()
+    {
+        basicMoveRed.GetComponent<BasicMoveRed>().isDead = true;
+        basicMoveRed.GetComponent<BasicMoveRed>().ShowDeadAnimation();
+        yield return new WaitForSeconds(1.04f);
+        basicMoveRed.GetComponent<BasicMoveRed>().OffDeadAnimation();
+        basicMoveRed.GetComponent<BasicMoveRed>().transform.position = new Vector2(0, 0);
+        basicMoveRed.GetComponent<BasicMoveRed>().isDead = false;
     }
 
 }
