@@ -41,7 +41,6 @@ public class GamePause2 : MonoBehaviour
             maincamera2.SetActive(true);
             maincamera3.SetActive(true);
             pauseCamera.SetActive(false);
-
             isPause = false;
             Time.timeScale = 1;
         }
@@ -56,11 +55,9 @@ public class GamePause2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)){
-            if(isPause == false) {
-                SetPause()    ;
-            } else {
-                Continue();
+        if(Input.GetKeyUp(KeyCode.Space)){
+            if(!isPause) {
+                SetPause();
             }
         }
         
