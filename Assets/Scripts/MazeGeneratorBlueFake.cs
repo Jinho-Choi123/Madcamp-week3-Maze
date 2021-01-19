@@ -118,8 +118,12 @@ public class MazeGeneratorBlueFake : MonoBehaviour {
     {
         InitValues();
 
+        int start_pos = 30;
+
+        if(Setting.inSameMap)
+            start_pos = 0;
         // Set starting point, set spawn point to start.
-        Vector2 startPos = new Vector2(-(cellSize * (mazeColumns / 2)) + (cellSize / 2) + 30, -(cellSize * (mazeRows / 2)) + (cellSize / 2) + 30);
+        Vector2 startPos = new Vector2(-(cellSize * (mazeColumns / 2)) + (cellSize / 2) + start_pos, -(cellSize * (mazeRows / 2)) + (cellSize / 2) + start_pos);
         Vector2 spawnPos = startPos;
 
         for (int x = 1; x <= mazeColumns; x++)

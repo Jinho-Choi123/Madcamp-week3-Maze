@@ -174,7 +174,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.8867924, g: 0.7905838, b: 0.8025643, a: 0}
+  m_BackGroundColor: {r: 1, g: 0.95686275, b: 0.95686275, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -191,7 +191,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 0.7390124
+  orthographic size: 1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -646,12 +646,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 708739351}
   moveSpeed: 1
-  maxSpeed: 2
   minSpeed: 0.5
   tmpMoveSpeed: 1
   isReverse: 0
   isStopped: 0
   isSlow: 0
+  isFast: 0
+  isDead: 0
   basicMove: {fileID: 1955864746}
 --- !u!50 &708739353
 Rigidbody2D:
